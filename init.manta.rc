@@ -6,7 +6,7 @@ on early-init
 on init
     symlink /sdcard /storage/sdcard0
 
-    setprop ro.radio.noril yes
+    setprop ro.radio.noril no
 
     start watchdogd
 
@@ -101,8 +101,6 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     #   group wifi inet keystore
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
-    disabled
-    oneshot
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -114,9 +112,6 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     #   group wifi inet keystore
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
-    disabled
-    oneshot
-    oneshot
 
 service gpsd /system/vendor/bin/gpsd -c /system/vendor/etc/gps.xml
     class main
